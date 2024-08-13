@@ -1,3 +1,8 @@
+<?php
+session_start();
+if (isset($_SESSION['id']))
+    header("location:index.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +20,7 @@
         <tr><td>Password</td><td><input type="password" name="Password"></td></tr>
         <tr><td colspan="2"><center><input type="submit" value="Login"></center></td></tr>
     </table>
-    <p>ถ้ายังไม่ได้เป็นสมาชิก <a href="register.html">กรุณาสมัครสมาชิก</a></p>
+    <p>ถ้ายังไม่ได้เป็นสมาชิก <a href="register.php">กรุณาสมัครสมาชิก</a></p>
     </center> </form>
 </body>
 </html>
