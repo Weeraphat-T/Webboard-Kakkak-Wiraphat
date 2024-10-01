@@ -11,26 +11,29 @@ if (isset($_SESSION['id']))
     <title>Verify</title>
 </head>
 <body>
-    <h1 style="text-align: center;"><b>Webboard Kakkak</b></h1>
-    <hr>
     <center>
         <p>
         <?php
-        $login = $_POST['Login'];
-        $password = $_POST['Password'];
 
-        if ($login == "admin" && $password == "ad1234") {
+        if ($_POST['Login'] == "admin" && $_POST['Password'] == "ad1234") {
             $_SESSION['username']="admin";
             $_SESSION['role']="a";
             $_SESSION['id']=session_id();
-            echo "ยินดีต้อนรับคุณ ADMIN"; }
-        else if ($login == "member" && $password == "mem1234") {
+            header("location:index.php");
+            die(); }
+
+        else if ($_POST['Login'] == "member" && $_POST['Password'] == "mem1234") {
             $_SESSION['username']="member";
             $_SESSION['role']="m";
             $_SESSION['id']=session_id();
-            echo "ยินดีต้อนรับคุณ MEMBER"; }
-        else
-            echo "ชื่อบัญชีหรือหรัสผ่านไม่ถูกต้อง";
+            header("location:index.php");
+            die(); }
+
+        else {
+            $_SESSION['error']='error';
+            header("location:login.php");
+            die(); }
+
         ?> 
     <br><a href="index.php">กลับไปหน้าหลัก</a></p>  
     </center>

@@ -17,9 +17,15 @@ if (isset($_SESSION['id']))
     <div class="container-lg">
     <h1 style="text-align: center;" class="mt-3">Webboard Kakkak</h1>
     <?php include "nav.php" ?>
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-sm-8 col-md-6 col-lg-4 mx-auto">
-        <div class="card mt-4">
+        <?php
+            if (isset($_SESSION['error'])) {
+                echo "<div class='alert alert-danger'>ชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง</div>";
+                unset($_SESSION['error']);
+            } 
+        ?>
+        <div class="card">
         <h5 class="card-header">เข้าสู่ระบบ</h5>
             <div class="card-body">
             <form action="verify.php" method="post">
@@ -29,7 +35,7 @@ if (isset($_SESSION['id']))
                 </div>
                 <div class="form-group mb-3">
                     <label for="Password" class="form-label">Password:</label>
-                    <input id="Password"type="text" class="form-control" name="Password">
+                    <input id="Password"type="password" class="form-control" name="Password">
                 </div>
                 <div class="mt-3 d-flex justify-content-center">
                     <button type="submit" class="btn btn-success btn-sm me-3">Login</button>
