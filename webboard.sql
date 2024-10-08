@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2024 at 06:27 AM
+-- Generation Time: Oct 08, 2024 at 06:13 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -31,6 +31,16 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(32) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `name`) VALUES
+(1, 'เรื่องทั่วไป'),
+(2, 'เรื่องเรียน'),
+(3, 'เรื่องกีฬา'),
+(4, 'เรื่องความรัก');
 
 -- --------------------------------------------------------
 
@@ -61,6 +71,16 @@ CREATE TABLE `post` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `post`
+--
+
+INSERT INTO `post` (`id`, `title`, `content`, `post_date`, `cat_id`, `user_id`) VALUES
+(1, 'afafd', 'dfsagsadgsd', '2024-10-08 10:45:35', 2, 1),
+(2, 'fafsag', 'gsdgsbsbsbdsbsdfbfxvbdfnb', '2024-10-08 11:06:32', 1, 11),
+(3, 'lol55555555555555555', '55555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555', '2024-10-08 11:08:34', 3, 12),
+(4, 'POPPY', 'i love you', '2024-10-08 11:11:16', 4, 15);
+
 -- --------------------------------------------------------
 
 --
@@ -82,7 +102,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `login`, `password`, `name`, `gender`, `email`, `role`) VALUES
-(9, 'tasgsag', 'gsdgasagdsa', 'dsgsagd', 'f', 'dagsagsagd', 'm');
+(1, 'Weeraphat', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'วีรภัทร ตรีรัตนนนท์', 'm', 'Weeraphat@gmail.com', 'm'),
+(11, 'Chaiyapop', 'd54b76b2bad9d9946011ebc62a1d272f4122c7b5', 'ไชยภพ รอดฮวบ', 'm', 'Chaiyapop@gmail.com', 'm'),
+(12, 'lol555', '3ac8c9b6cc2f910d879004722a2e901a9ee79302', 'lol 555', 'o', 'lol547874@eiei', 'm'),
+(15, 'POP', '4f197c99a78b8411f1cf48ab409a0a6d176b99b7', 'POP PY', 'f', 'POPPOP@pop', 'm');
 
 --
 -- Indexes for dumped tables
@@ -120,25 +143,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

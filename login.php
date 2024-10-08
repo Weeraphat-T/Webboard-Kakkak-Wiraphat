@@ -31,11 +31,11 @@ if (isset($_SESSION['id']))
             <form action="verify.php" method="post">
                 <div class="form-group mb-3">
                     <label for="Login" class="form-label">Login:</label>
-                    <input id="Login" type="text" class="form-control" name="Login">
+                    <input id="Login" type="text" class="form-control" name="login">
                 </div>
                 <div class="form-group mb-3">
                     <label for="Password" class="form-label">Password:</label>
-                    <input id="Password"type="password" class="form-control" name="Password">
+                    <input id="Password" type="password" class="form-control" name="pwd">
                 </div>
                 <div class="mt-3 d-flex justify-content-center">
                     <button type="submit" class="btn btn-success btn-sm me-3">Login</button>

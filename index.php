@@ -42,28 +42,36 @@ session_start();
         <label>หมวดหมู่ :</label>
             <span class="dropdown">
                 <button class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown">--ทั้งหมด--</button>
-                <div class="dropdown-menu">
-                    <a href="#" class="dropdown-item">ทั้งหมด</a>
-                    <a href="#" class="dropdown-item">เรื่องทั่วไป</a>
-                    <a href="#" class="dropdown-item">เรื่องเรียน</a>
-                </div>
+                <ul class="dropdown-menu" aria-labelledby="Button2">
+                    <?php
+                        $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+                        $sql = "SELECT * FROM category";
+                        foreach($conn->query($sql) as $row){
+                            echo "<li><a class='dropdown-item' href='#'>$row[name]</a></li>";
+                        }
+                        $conn = null;
+                    ?>
+                </ul>
             </span>
             <?php
                 if (isset($_SESSION['id'])) {
-                    echo "<a class='btn btn-success btn-sm' style='float : right;'><i class='bi bi-plus'></i> สร้างกระทู้ใหม่</a>";
+                    echo "<a href='newpost.php' class='btn btn-success btn-sm' style='float : right;'><i class='bi bi-plus'></i> สร้างกระทู้ใหม่</a>";
                 }
             ?>
         </div>
         <div class="mt-3">
         <table class='table table-striped'>  
         <?php
-            for($i = 1; $i <= 10; $i++) {
-                echo "<tr><td><a href=post.php?id=$i style='text-decoration:none'>กระทู้ $i</a>";
-                if (isset($_SESSION['id']) && $_SESSION['role']=="a") {
-                    echo "<a href='delete.php' class='btn btn-sm btn-danger float-end me-3'><i class='bi bi-trash bi-light'></i></a>";
-                }
-                echo "</td></tr>";
+            $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+            $sql = "SELECT t3.name,t1.title,t1.id,t2.login,t1.post_date FROM post as t1
+                    INNER JOIN user as t2 ON (t1.user_id=t2.id)
+                    INNER JOIN category as t3 ON (t1.cat_id=t3.id) ORDER BY t1.post_date DESC";
+            $result = $conn->query($sql);
+            while($row = $result->fetch()){
+                echo "<tr><td>[ $row[0] ]<a href=post.php?id=$row[2]
+                style=text-decoration:none> $row[1] </a><br>$row[3] - $row[4]</td></tr>";
             }
+            $conn = null;
         ?>
         </table>
         </div>
