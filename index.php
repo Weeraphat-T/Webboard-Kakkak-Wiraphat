@@ -53,7 +53,7 @@ session_start();
                         $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
                         $sql = "SELECT * FROM category";
                         foreach($conn->query($sql) as $row){
-                            echo "<li><a class='dropdown-item' href='#'>$row[name]</a></li>";
+                            echo "<li><a class='dropdown-item' href='?cat=$row[name]'>$row[name]</a></li>";
                         }
                         $conn = null;
                     ?>
@@ -74,10 +74,22 @@ session_start();
                     INNER JOIN category as t3 ON (t1.cat_id=t3.id) ORDER BY t1.post_date DESC";
             $result = $conn->query($sql);
             while($row = $result->fetch()){
+                if (isset($_GET["cat"]) && $_GET["cat"] == $row[0]) {
                 echo "<tr><td>[ $row[0] ]<a href=post.php?id=$row[2]
                 style=text-decoration:none> $row[1] </a><br>$row[3] - $row[4]</td>";
+                }
+                else if (!isset($_GET["cat"])) {
+                    echo "<tr><td>[ $row[0] ]<a href=post.php?id=$row[2]
+                    style=text-decoration:none> $row[1] </a><br>$row[3] - $row[4]</td>";
+                }
                 if (isset($_SESSION['id']) && $_SESSION['role'] == "a"){
-                    echo "<td><a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm float-end' onclick='return myfunction()'><i class='bi bi-trash'></i></a></td>";
+                    echo "<td><a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm float-end' onclick='return myfunction()'><i class='bi bi-trash'></i></a>";
+                }
+                else if (isset($_SESSION['id']) && $_SESSION['username'] == $row[3]){
+                    echo "<td><a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm float-end' onclick='return myfunction()'><i class='bi bi-trash'></i></a>";
+                }
+                if (isset($_SESSION['id']) && $_SESSION['username'] == $row[3]){
+                    echo "<a href='editpost.php?id=$row[2]' class='btn btn-warning btn-sm float-end me-2'><i class='bi bi-pencil-fill'></i></a></td>";
                 }
                 echo "</tr>";
             }
