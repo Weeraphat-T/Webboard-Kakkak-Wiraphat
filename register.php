@@ -12,6 +12,17 @@ if (isset($_SESSION['id']))
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script>
+        function OnblurPWD() {
+            let Pwd1 = document.getElementById("pwd1");
+            let Pwd2 = document.getElementById("pwd2");
+            if (Pwd1.value !== Pwd2.value) {
+                alert("รหัสผ่านทั้งสองช่องไม่ตรงกัน");
+                Pwd1.value = "";
+                Pwd2.value = "";
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container-lg">
@@ -40,9 +51,13 @@ if (isset($_SESSION['id']))
                     <div class="col-lg-9 mb-3">
                         <input id="login" type="text" class="form-control" name="login" required>
                     </div>
-                    <label for="pwd" class="col-lg-3 col-form-label">รหัสผ่าน:</label>
+                    <label for="pwd1" class="col-lg-3 col-form-label">รหัสผ่าน:</label>
                     <div class="col-lg-9 mb-3">
-                        <input id="pwd" type="password" class="form-control" name="pwd" required>
+                        <input id="pwd1" type="password" class="form-control" name="pwd" required>
+                    </div>
+                    <label for="pwd2" class="col-lg-3 col-form-label">ใส่รหัสผ่านซ้ำ:</label>
+                    <div class="col-lg-9 mb-3">
+                        <input id="pwd2" type="password" class="form-control" name="pwd2" onblur="OnblurPWD()" required>
                     </div>
                     <label for="name" class="col-lg-3 col-form-label">ชื่อ-นามสกุล:</label>
                     <div class="col-lg-9 mb-3">
