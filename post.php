@@ -29,7 +29,6 @@ if (!isset($_SESSION['id']))
     </center>
     <div class="row mt-4">
         <div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
-
         <?php 
             $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
             $sql1 = "SELECT t1.title , t1.content , t2.login , t1.post_date FROM post as t1

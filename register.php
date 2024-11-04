@@ -92,6 +92,5 @@ if (isset($_SESSION['id']))
         </div>
         </div>
     </div>
-    <center><p><a href="index.php">กลับไปหน้าหลัก</a></p></center>
 </body>
 </html>

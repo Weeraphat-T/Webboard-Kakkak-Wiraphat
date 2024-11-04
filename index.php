@@ -24,17 +24,28 @@ session_start();
         <div class="mt-3">
         <label>หมวดหมู่ :</label>
             <span class="dropdown">
-                <button class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown">--ทั้งหมด--</button>
-                <ul class="dropdown-menu" aria-labelledby="Button2">
-                    <?php
-                        $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
-                        $sql = "SELECT * FROM category";
-                        foreach($conn->query($sql) as $row){
-                            echo "<li><a class='dropdown-item' href='?cat=$row[name]'>$row[name]</a></li>";
+                <?php
+                    $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+                    $sql = "SELECT * FROM category";
+                    $result = $conn->query($sql);
+                    if (isset($_GET["cat"])) {
+                    while($row1 = $result->fetch()){
+                        if ($_GET["cat"] == $row1[1]) {
+                            echo "<button class='btn btn-light btn-sm dropdown-toggle' data-bs-toggle='dropdown'>$row1[1]</button>";
                         }
-                        $conn = null;
-                    ?>
-                </ul>
+                        }
+                    }
+                    else if (!isset($_GET["cat"])) {
+                        echo "<button class='btn btn-light btn-sm dropdown-toggle' data-bs-toggle='dropdown'>--ทั้งหมด--</button>";
+                    }
+                    echo "<ul class='dropdown-menu' aria-labelledby='Button2'>";
+                    echo "<li><a class='dropdown-item' href='index.php'>--ทั้งหมด--</a></li>";
+                        foreach($conn->query($sql) as $row2){
+                            echo "<li><a class='dropdown-item' href='?cat=$row2[name]'>$row2[name]</a></li>";
+                        }
+                        $conn2 = null;
+                    echo "</ul>";
+                ?>
             </span>
             <?php
                 if (isset($_SESSION['id'])) {
@@ -52,21 +63,28 @@ session_start();
             $result = $conn->query($sql);
             while($row = $result->fetch()){
                 if (isset($_GET["cat"]) && $_GET["cat"] == $row[0]) {
-                echo "<tr><td>[ $row[0] ]<a href=post.php?id=$row[2]
-                style=text-decoration:none> $row[1] </a><br>$row[3] - $row[4]</td>";
+                    echo "<tr><td>[ $row[0] ]<a href=post.php?id=$row[2] style=text-decoration:none> $row[1] </a><br>$row[3] - $row[4]</td>";
+                    if (isset($_SESSION['id']) && $_SESSION['role'] == "a"){
+                        echo "<td><a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm float-end' onclick='return myfunction()'><i class='bi bi-trash'></i></a>";
+                    }
+                    else if (isset($_SESSION['id']) && $_SESSION['username'] == $row[3]){
+                        echo "<td><a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm float-end' onclick='return myfunction()'><i class='bi bi-trash'></i></a>";
+                    }
+                    if (isset($_SESSION['id']) && $_SESSION['username'] == $row[3]){
+                        echo "<a href='editpost.php?id=$row[2]' class='btn btn-warning btn-sm float-end me-2'><i class='bi bi-pencil-fill'></i></a></td>";
+                    }
                 }
                 else if (!isset($_GET["cat"])) {
-                    echo "<tr><td>[ $row[0] ]<a href=post.php?id=$row[2]
-                    style=text-decoration:none> $row[1] </a><br>$row[3] - $row[4]</td>";
-                }
-                if (isset($_SESSION['id']) && $_SESSION['role'] == "a"){
-                    echo "<td><a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm float-end' onclick='return myfunction()'><i class='bi bi-trash'></i></a>";
-                }
-                else if (isset($_SESSION['id']) && $_SESSION['username'] == $row[3]){
-                    echo "<td><a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm float-end' onclick='return myfunction()'><i class='bi bi-trash'></i></a>";
-                }
-                if (isset($_SESSION['id']) && $_SESSION['username'] == $row[3]){
-                    echo "<a href='editpost.php?id=$row[2]' class='btn btn-warning btn-sm float-end me-2'><i class='bi bi-pencil-fill'></i></a></td>";
+                    echo "<tr><td>[ $row[0] ]<a href=post.php?id=$row[2] style=text-decoration:none> $row[1] </a><br>$row[3] - $row[4]</td>";
+                    if (isset($_SESSION['id']) && $_SESSION['role'] == "a"){
+                        echo "<td><a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm float-end' onclick='return myfunction()'><i class='bi bi-trash'></i></a>";
+                    }
+                    else if (isset($_SESSION['id']) && $_SESSION['username'] == $row[3]){
+                        echo "<td><a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm float-end' onclick='return myfunction()'><i class='bi bi-trash'></i></a>";
+                    }
+                    if (isset($_SESSION['id']) && $_SESSION['username'] == $row[3]){
+                        echo "<a href='editpost.php?id=$row[2]' class='btn btn-warning btn-sm float-end me-2'><i class='bi bi-pencil-fill'></i></a></td>";
+                    }
                 }
                 echo "</tr>";
             }

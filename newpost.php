@@ -21,7 +21,7 @@ if (!isset($_SESSION['id']))
     <div class="row mt-4">
         <div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
             <div class="card text-dark bg-white border-info">
-                <div class="card-header bg-info text-white">ตั้งกระทู้ใหม่</div>
+                <h5 class="card-header bg-info text-white">ตั้งกระทู้ใหม่</h5>
                 <div class="card-body">
                     <form action="newpost_save.php" method="post">
                         <div class="row mb-3">
