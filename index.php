@@ -48,7 +48,7 @@ session_start();
                 ?>
             </span>
             <?php
-                if (isset($_SESSION['id'])) {
+                if (isset($_SESSION['id']) && $_SESSION['role'] != 'b') {
                     echo "<a href='newpost.php' class='btn btn-success btn-sm' style='float : right;'><i class='bi bi-plus'></i> สร้างกระทู้ใหม่</a>";
                 }
             ?>
@@ -64,26 +64,30 @@ session_start();
             while($row = $result->fetch()){
                 if (isset($_GET["cat"]) && $_GET["cat"] == $row[0]) {
                     echo "<tr><td>[ $row[0] ]<a href=post.php?id=$row[2] style=text-decoration:none> $row[1] </a><br>$row[3] - $row[4]</td>";
-                    if (isset($_SESSION['id']) && $_SESSION['role'] == "a"){
-                        echo "<td><a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm float-end' onclick='return myfunction()'><i class='bi bi-trash'></i></a>";
-                    }
-                    else if (isset($_SESSION['id']) && $_SESSION['username'] == $row[3]){
-                        echo "<td><a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm float-end' onclick='return myfunction()'><i class='bi bi-trash'></i></a>";
-                    }
-                    if (isset($_SESSION['id']) && $_SESSION['username'] == $row[3]){
-                        echo "<a href='editpost.php?id=$row[2]' class='btn btn-warning btn-sm float-end me-2'><i class='bi bi-pencil-fill'></i></a></td>";
+                    if (isset($_SESSION['id']) && $_SESSION['role'] != "b"){
+                        if (isset($_SESSION['id']) && $_SESSION['role'] == "a"){
+                            echo "<td><a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm float-end' onclick='return myfunction()'><i class='bi bi-trash'></i></a>";
+                        }
+                        else if (isset($_SESSION['id']) && $_SESSION['username'] == $row[3]){
+                            echo "<td><a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm float-end' onclick='return myfunction()'><i class='bi bi-trash'></i></a>";
+                        }
+                        if (isset($_SESSION['id']) && $_SESSION['username'] == $row[3]){
+                            echo "<a href='editpost.php?id=$row[2]' class='btn btn-warning btn-sm float-end me-2'><i class='bi bi-pencil-fill'></i></a></td>";
+                        }
                     }
                 }
                 else if (!isset($_GET["cat"])) {
                     echo "<tr><td>[ $row[0] ]<a href=post.php?id=$row[2] style=text-decoration:none> $row[1] </a><br>$row[3] - $row[4]</td>";
-                    if (isset($_SESSION['id']) && $_SESSION['role'] == "a"){
-                        echo "<td><a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm float-end' onclick='return myfunction()'><i class='bi bi-trash'></i></a>";
-                    }
-                    else if (isset($_SESSION['id']) && $_SESSION['username'] == $row[3]){
-                        echo "<td><a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm float-end' onclick='return myfunction()'><i class='bi bi-trash'></i></a>";
-                    }
-                    if (isset($_SESSION['id']) && $_SESSION['username'] == $row[3]){
-                        echo "<a href='editpost.php?id=$row[2]' class='btn btn-warning btn-sm float-end me-2'><i class='bi bi-pencil-fill'></i></a></td>";
+                    if (isset($_SESSION['id']) && $_SESSION['role'] != "b"){
+                        if (isset($_SESSION['id']) && $_SESSION['role'] == "a"){
+                            echo "<td><a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm float-end' onclick='return myfunction()'><i class='bi bi-trash'></i></a>";
+                        }
+                        else if (isset($_SESSION['id']) && $_SESSION['username'] == $row[3]){
+                            echo "<td><a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm float-end' onclick='return myfunction()'><i class='bi bi-trash'></i></a>";
+                        }
+                        if (isset($_SESSION['id']) && $_SESSION['username'] == $row[3]){
+                            echo "<a href='editpost.php?id=$row[2]' class='btn btn-warning btn-sm float-end me-2'><i class='bi bi-pencil-fill'></i></a></td>";
+                        }
                     }
                 }
                 echo "</tr>";

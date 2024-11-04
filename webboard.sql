@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2024 at 01:44 PM
+-- Generation Time: Nov 04, 2024 at 02:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -40,7 +40,10 @@ INSERT INTO `category` (`id`, `name`) VALUES
 (1, 'เรื่องทั่วไป'),
 (2, 'เรื่องเรียน'),
 (3, 'เรื่องกีฬา'),
-(4, 'เรื่องความรัก');
+(4, 'เรื่องความรัก'),
+(5, 'เรื่องของกิน'),
+(6, 'เรื่องของใช้'),
+(7, 'เรื่องการใช้เงิน');
 
 -- --------------------------------------------------------
 
@@ -61,8 +64,9 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`id`, `content`, `post_date`, `user_id`, `post_id`) VALUES
-(4, 'lol5555555555555555555', '2024-10-11 15:04:37', 16, 4),
-(5, 'twatwaggsgsagdg', '2024-10-11 15:41:34', 16, 4);
+(11, 'สุดยอดดดดดดดดดดดดดดดดดดดดดดดดดดดดด', '2024-11-04 20:14:04', 1, 7),
+(12, 'โย่วววววววววววววววววววววว', '2024-11-04 20:14:51', 2, 8),
+(13, 'อะไรเนี่ยยยยยยยยยยยยยยยยยยยยยยย', '2024-11-04 20:15:10', 2, 6);
 
 -- --------------------------------------------------------
 
@@ -84,9 +88,10 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`id`, `title`, `content`, `post_date`, `cat_id`, `user_id`) VALUES
-(1, 'afafd', 'dfsagsadgsd', '2024-10-08 10:45:35', 2, 1),
-(4, 'POPPY', 'i love you', '2024-10-08 11:11:16', 4, 15),
-(5, 'lol', 'lololololol', '2024-10-13 21:10:09', 1, 11);
+(6, 'lollollololololol', 'lololo555555555555555', '2024-11-04 20:00:19', 1, 1),
+(7, 'สุดยอดดดดดดดดดดดดดด', 'โว้ววววววววววววววว', '2024-11-04 20:02:57', 2, 19),
+(8, 'หวานจัง', 'คนนั้นอะ เขิลลลลลล', '2024-11-04 20:03:19', 5, 19),
+(9, 'AGEAGSDAGDGD', 'ASDGDGSAASDGSADG', '2024-11-04 20:17:48', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -110,11 +115,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `login`, `password`, `name`, `gender`, `email`, `role`) VALUES
 (1, 'Weeraphat', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'วีรภัทร ตรีรัตนนนท์', 'm', 'Weeraphat@gmail.com', 'a'),
-(11, 'Chaiyapop', 'd54b76b2bad9d9946011ebc62a1d272f4122c7b5', 'ไชยภพ รอดฮวบ', 'm', 'Chaiyapop@gmail.com', 'm'),
-(12, 'lol555', '3ac8c9b6cc2f910d879004722a2e901a9ee79302', 'lol 555', 'o', 'lol547874@eiei', 'm'),
-(15, 'POP', '4f197c99a78b8411f1cf48ab409a0a6d176b99b7', 'POP PY', 'f', 'POPPOP@pop', 'm'),
-(16, 'Admin', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'Ad min', 'o', 'Ad@min', 'a'),
-(17, 'Member', '83787f060a59493aefdcd4b2369990e7303e186e', 'Mem Ber', 'o', 'Mem@ber', 'm');
+(2, 'Chaiyapop', 'd54b76b2bad9d9946011ebc62a1d272f4122c7b5', 'ไชยภพ รอดฮวบ', 'm', 'Chaiyapop@gmail.com', 'm'),
+(19, 'LOL', '403926033d001b5279df37cbbe5287b7c7c267fa', 'LOL LOLlolol', 'o', 'LOL@LOL.:)', 'b');
 
 --
 -- Indexes for dumped tables
@@ -152,25 +154,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
