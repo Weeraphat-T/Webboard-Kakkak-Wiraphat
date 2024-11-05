@@ -70,10 +70,10 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] != 'a')
                                     <td class='text-start'>$i</td>
                                     <td class='text-center'>$row[1]</td>
                                     <td class='text-end'>
-                                        <a class='btn btn-warning' role='button' data-bs-toggle='modal' data-bs-target='#editModal' data-value-catID='$row[0]' data-value-name='$row[1]' onclick='setModalContent(this)'>
+                                        <a class='btn btn-warning btn-sm' role='button' data-bs-toggle='modal' data-bs-target='#editModal' data-value-catID='$row[0]' data-value-name='$row[1]' onclick='setModalContent(this)'>
                                             <i class='bi bi-pencil-fill'></i>
                                         </a>
-                                        <a onclick='deleteCategory(\"$row[1]\")' class='btn btn-danger' role='button'>
+                                        <a onclick='deleteCategory(\"$row[1]\")' class='btn btn-danger btn-sm' role='button'>
                                             <i class='bi bi-trash'></i>
                                         </a>
                                     </td>
@@ -85,7 +85,7 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] != 'a')
                         </tbody>
                     </table>
                     <center>
-                        <a class="btn btn-success" role="button" data-bs-toggle="modal" data-bs-target="#addModal">
+                        <a class="btn btn-success btn-sm" role="button" data-bs-toggle="modal" data-bs-target="#addModal">
                             <i class="bi bi-bookmark-plus"></i> เพิ่มหมวดหมู่ใหม่
                         </a>
                     </center>

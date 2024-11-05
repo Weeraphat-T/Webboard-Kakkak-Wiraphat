@@ -72,7 +72,7 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] != 'a')
                                         <td class='text-center'>$row[4]</td>
                                         <td class='text-center'>$row[5]</td>
                                         <td class='text-end'>
-                                            <a class='btn btn-warning' role='button' data-bs-toggle='modal' data-bs-target='#editModal' data-value-raw='$rowData' onclick='setModalData(this)'>
+                                            <a class='btn btn-warning btn-sm' role='button' data-bs-toggle='modal' data-bs-target='#editModal' data-value-raw='$rowData' onclick='setModalData(this)'>
                                                 <i class='bi bi-pencil-fill'></i>
                                             </a>
                                         </td>
